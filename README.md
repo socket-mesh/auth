@@ -1,2 +1,2 @@
-# sc-auth
-Auth module for SocketCluster
+# ag-auth
+Auth module for Asyngular
