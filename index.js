@@ -1,60 +1,43 @@
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
-var scErrors = require('sc-errors');
-var InvalidArgumentsError = scErrors.InvalidArgumentsError;
+const scErrors = require('sc-errors');
+const InvalidArgumentsError = scErrors.InvalidArgumentsError;
 
-var AuthEngine = function () {};
+let AuthEngine = function () {};
 
 AuthEngine.prototype.verifyToken = function (signedToken, key, options) {
   options = options || {};
-  var jwtOptions = cloneObject(options);
-  delete jwtOptions.async;
+  let jwtOptions = Object.assign({}, options);
   delete jwtOptions.socket;
 
-  if (options.async) {
-    if (typeof signedToken === 'string' || signedToken == null) {
-      return new Promise((resolve, reject) => {
-        jwt.verify(signedToken || '', key, jwtOptions, (err, token) => {
-          if (err) {
-            reject(err);
-            return;
-          }
-          resolve(token);
-        });
-      });
-    }
-    return Promise.reject(new InvalidArgumentsError('Invalid token format - Token must be a string'));
-  }
   if (typeof signedToken === 'string' || signedToken == null) {
-    return jwt.verify(signedToken || '', key, jwtOptions);
-  }
-  throw new InvalidArgumentsError('Invalid token format - Token must be a string');
-};
-
-AuthEngine.prototype.signToken = function (token, key, options) {
-  options = options || {};
-  var jwtOptions = cloneObject(options);
-  delete jwtOptions.async;
-  if (options.async) {
     return new Promise((resolve, reject) => {
-      jwt.sign(token, key, jwtOptions, (err, signedToken) => {
+      jwt.verify(signedToken || '', key, jwtOptions, (err, token) => {
         if (err) {
           reject(err);
           return;
         }
-        resolve(signedToken);
+        resolve(token);
       });
     });
   }
-  return jwt.sign(token, key, jwtOptions);
+  return Promise.reject(
+    new InvalidArgumentsError('Invalid token format - Token must be a string')
+  );
 };
 
-function cloneObject(object) {
-  var clone = {};
-  Object.keys(object || {}).forEach(function (key) {
-    clone[key] = object[key];
+AuthEngine.prototype.signToken = function (token, key, options) {
+  options = options || {};
+  let jwtOptions = Object.assign({}, options);
+  return new Promise((resolve, reject) => {
+    jwt.sign(token, key, jwtOptions, (err, signedToken) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve(signedToken);
+    });
   });
-  return clone;
-}
+};
 
-module.exports.AuthEngine = AuthEngine;
+module.exports = AuthEngine;
