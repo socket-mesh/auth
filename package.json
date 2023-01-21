@@ -1,13 +1,12 @@
 {
   "name": "ag-auth",
   "version": "1.0.1",
-  "description": "Auth module for Asyngular",
+  "description": "Auth module for SocketCluster",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "asyngular",
     "auth",
     "jwt",
     "socketcluster"
@@ -15,7 +14,7 @@
   "author": "Jonathan Gros-Dubois <grosjona@yahoo.com.au>",
   "license": "MIT",
   "dependencies": {
-    "jsonwebtoken": "^8.3.0",
+    "jsonwebtoken": "^9.0.0",
     "sc-errors": "^2.0.0"
   }
 }
