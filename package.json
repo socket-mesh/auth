@@ -1,20 +1,48 @@
 {
-  "name": "ag-auth",
-  "version": "2.0.0",
-  "description": "Auth module for SocketCluster",
+  "name": "@socket-mesh/auth",
+  "version": "2.1.0",
+  "description": "Auth module for SocketMesh and SocketCluster",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node ./scripts/build.mjs && tsc",
+    "deploy": "cd dist && npm publish --access public",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --config ./jest.config.ts"
   },
   "keywords": [
     "auth",
     "jwt",
-    "socketcluster"
+    "socketcluster",
+    "socketMesh"
   ],
   "author": "Jonathan Gros-Dubois <grosjona@yahoo.com.au>",
-  "license": "MIT",
+	"contributors": [
+		"Greg Kimmy",
+		{
+			"name": "Jonathan Gros-Dubois",
+			"email": "grosjona@yahoo.com.au"
+		}
+	],
+	"license": "MIT",
+	"homepage": "https://github.com/socket-mesh/auth#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/socket-mesh/auth.git"
+  },
+  "bugs": {
+		"url": "https://github.com/socket-mesh/auth/issues"
+  },
   "dependencies": {
-    "jsonwebtoken": "^9.0.0",
-    "sc-errors": "^2.0.0"
+    "@socket-mesh/errors": "^3.0.3",
+    "jsonwebtoken": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/jsonwebtoken": "^9.0.1",
+    "@types/node": "^18.15.10",
+		"cross-env": "^7.0.3",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.0.5",
+		"ts-node": "^10.9.1"
   }
 }
