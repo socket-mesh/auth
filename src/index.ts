@@ -1,11 +1,11 @@
-import { GetPublicKeyOrSecret, Jwt, Secret, sign, SignOptions, verify, VerifyOptions } from 'jsonwebtoken';
+import { GetPublicKeyOrSecret, JwtPayload, Secret, sign, SignOptions, verify, VerifyOptions } from 'jsonwebtoken';
 import { InvalidArgumentsError } from '@socket-mesh/errors';
 
 export class AuthEngine {
-	verifyToken(signedToken: string, key: Secret | GetPublicKeyOrSecret, options: VerifyOptions & { complete: true; }): Promise<Jwt | undefined> {
+	verifyToken(signedToken: string, key: Secret | GetPublicKeyOrSecret, options: VerifyOptions & { complete: true; }): Promise<string | JwtPayload> {
 		const jwtOptions = Object.assign({}, options || {});
 
-		delete jwtOptions['socket'];
+		delete (jwtOptions as any)['socket'];
 
 		if (typeof signedToken === 'string' || signedToken == null) {
 			return new Promise((resolve, reject) => {
