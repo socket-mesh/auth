@@ -1,2 +1,2 @@
 export { AuthEngine } from "./auth-engine";
-export { AuthState } from "./auth-state";
+export { AuthState, AuthStateChange } from "./auth-state";
