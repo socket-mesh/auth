@@ -1,6 +1,6 @@
 {
   "name": "@socket-mesh/auth",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "Auth module for SocketMesh and SocketCluster",
   "type": "module",
   "main": "index.js",

@@ -4,7 +4,7 @@ export interface AuthToken {
 	exp?: number,
 	iss?: string,
 	sub?: string,
-	aud?: string,
+	aud?: string | string[];
 	nbf?: number,
 	iat?: number,
 	jti?: string,
