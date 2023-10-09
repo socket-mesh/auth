@@ -1,4 +1,4 @@
-export { AuthState, AuthStateChange } from "./auth-state";
+export { AuthState, AuthStateChange } from "./auth-state.js";
 
 export interface AuthToken {
 	exp?: number,

@@ -1,2 +1,2 @@
-# ag-auth
-Auth module for Asyngular
+# auth
+Auth module for SocketMesh
