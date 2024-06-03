@@ -12,3 +12,23 @@ export interface AuthToken {
 }
 
 export type SignedAuthToken = string;
+
+export function extractAuthTokenData(signedAuthToken: SignedAuthToken): AuthToken | string | null {
+	if (typeof signedAuthToken !== 'string') return null;
+
+	let tokenParts = signedAuthToken.split('.');
+	let encodedTokenData = tokenParts[1];
+
+	if (encodedTokenData != null) {
+		let tokenData = encodedTokenData;
+
+		try {
+			tokenData = Buffer.from(tokenData, 'base64').toString('utf8');
+			return JSON.parse(tokenData);
+		} catch (e) {
+			return tokenData;
+		}
+	}
+
+	return null;
+}

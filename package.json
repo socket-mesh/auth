@@ -1,6 +1,6 @@
 {
   "name": "@socket-mesh/auth",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "Auth module for SocketMesh and SocketCluster",
   "type": "module",
   "main": "index.js",
@@ -35,9 +35,9 @@
   "dependencies": {
   },
   "devDependencies": {
-    "@types/jsonwebtoken": "^9.0.3",
-    "@types/node": "^20.8.4",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/node": "^20.14.0",
 		"cross-env": "^7.0.3",
-		"ts-node": "^10.9.1"
+		"ts-node": "^10.9.2"
   }
 }
